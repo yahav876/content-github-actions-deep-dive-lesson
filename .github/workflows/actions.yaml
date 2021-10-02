@@ -10,25 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check out code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: configure python on the runner
-      - uses: actions/setup-python@v2
+        uses: actions/setup-python@v2
         with:
           python-version: 3.8
 
       - name: install libraries
-      - run: |
+        run: |
           cd functions
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt .; fi
 
       - name: zip bundle
-      - run: |
+        run: |
           cd functions
           zip -r ../${{ github.sha }}.zip .
-      
+    
       - name: archive the artifacts
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: zipped-budle
           path: ${{ github.sha }}.zip
