@@ -18,13 +18,13 @@ jobs:
 
       - name: install libraries
         run: |
-          cd functions
+          cd function
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt .; fi
 
       - name: zip bundle
         run: |
-          cd functions
+          cd function
           zip -r ../${{ github.sha }}.zip .
     
       - name: archive the artifacts
